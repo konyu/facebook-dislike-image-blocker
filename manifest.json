@@ -6,7 +6,7 @@
   "description": "Facebook image detector",
   
   "permissions" : [
-    "tabs", "http://*/*", "https://*/*", "contextMenus"
+    "tabs", "http://*/*", "https://*/*", "contextMenus", "storage"
   ],
   
   "icons" : {
