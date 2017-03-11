@@ -1,6 +1,6 @@
 
 // localStorageのキー
-var key = "facebook-image-detector";  
+var key = "facebook-image-context-viewer";  
 // localStorageの文字列をJSONで取得
 var getObject = function() {
     var str = localStorage.getItem(key);

@@ -1,9 +1,9 @@
 {
-  "name": "Facebook image detector",
+  "name": "Facebook image context viewer",
   "version": "0.1",
   "manifest_version": 2,
   
-  "description": "Facebook image detector",
+  "description": "Facebook image context viewer",
   
   "permissions" : [
     "tabs", "http://*/*", "https://*/*", "contextMenus", "storage"
@@ -18,13 +18,12 @@
   },
   "browser_action" : {
     "default_icon" : "icon16.png",
-    "default_title" : "browser action sample",
-    "default_popup" : "popup.html"
+    "default_title" : "Facebook image context viewer"
   },
   "content_scripts": [
     {
       "matches" : ["http://www.facebook.com/*", "https://www.facebook.com/*"],
-      "js" : ["jquery-1.10.2.min.js", "content.js"],
+      "js" : ["jquery-3.1.1.min.js", "content.js"],
       "css": ["content.css"]
     }
   ],

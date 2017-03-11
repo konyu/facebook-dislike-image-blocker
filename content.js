@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   var getInvisibleOption = function() {
     // オプションで設定したlocalstrageを反映する
-     var key = "facebook-image-detector";  
+     var key = "facebook-image-context-viewer";  
     chrome.runtime.sendMessage({method: "getLocalStorage", key: key}, function(response) {
       console.log(response.data);
       var obj = JSON.parse(response.data);
