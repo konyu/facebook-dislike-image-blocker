@@ -1,9 +1,9 @@
 {
-  "name": "sample extension",
+  "name": "Facebook image detector",
   "version": "0.1",
   "manifest_version": 2,
   
-  "description": "this is sample",
+  "description": "Facebook image detector",
   
   "permissions" : [
     "tabs", "http://*/*", "https://*/*", "contextMenus"
@@ -28,5 +28,6 @@
       "css": ["content.css"]
     }
   ],
-  "web_accessible_resources": ["content.css"]
+  "web_accessible_resources": ["content.css"],
+  "options_page": "options.html"
 }

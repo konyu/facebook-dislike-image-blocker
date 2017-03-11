@@ -6,7 +6,7 @@ $(document).ready(function(){
   },1000);
   
   $(document).on('click', 'div.image-content' ,function(){
-    $imgs = $(this).closest('div.userContentWrapper').find('div.uiScaledImageContainer img.img');
+    var $imgs = $(this).closest('div.userContentWrapper').find('div.uiScaledImageContainer img.img');
     if ($imgs.is(':visible')) {
       $imgs.hide();
     } else {
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
   function detectImage(){
     $('#stream_pagelet div.userContentWrapper').each(function(i, elm) {
-      $imgContainer = $(this).find('div.uiScaledImageContainer');
+      var $imgContainer = $(this).find('div.uiScaledImageContainer');
       
       if($imgContainer.hasClass('profilePic')){
         return
@@ -25,7 +25,8 @@ $(document).ready(function(){
       if($(this).find('div.image-content')[0] != undefined){
         return
       }
-      $imgs = $($imgContainer).find('img.img');
+      
+      var $imgs = $($imgContainer).find('img.img');
 
       //画像のタグを表示
       $imgs.each(function(j) {
