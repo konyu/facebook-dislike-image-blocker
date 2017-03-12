@@ -10,11 +10,15 @@ $(document).ready(function(){
 
   var getInvisibleOption = function() {
     // オプションで設定したlocalstrageを反映する
-     var key = "facebook-image-context-viewer";  
+    var key = "facebook-image-context-viewer";  
     chrome.runtime.sendMessage({method: "getLocalStorage", key: key}, function(response) {
       console.log(response.data);
-      var obj = JSON.parse(response.data);
-      var isVisible = obj['invisible'];
+      var isVisible = false;
+      var obj = {};
+      if(response.data != undefined) {
+        obj = JSON.parse(response.data);
+        isVisible = obj['invisible'];
+      }
 
       setInterval(function(){
         detectImage(isVisible);
@@ -35,16 +39,23 @@ $(document).ready(function(){
   });
 
   function detectImage(isVisible){
-    $('#stream_pagelet div.userContentWrapper').each(function(i, elm) {
+    var $userContentWrappers =  $('#stream_pagelet div.userContentWrapper');
+    
+    if($userContentWrappers.length < 1){
+       $userContentWrappers =  $('#recent_capsule_container div.userContentWrapper');
+    } 
+    $userContentWrappers.each(function(i, elm) {
       var $imgContainer = $(this).find('div.uiScaledImageContainer');
-      
-      if($imgContainer.hasClass('profilePic')){
-        return
-      } 
 
-      if($(this).find('div.image-content')[0] != undefined){
-        return
+      //処理済みの項目はcheck済みのマークを付けておく      
+      if($(this).prop('image-content-checked') != undefined){
+        return;
       }
+      $(this).prop('image-content-checked', 'checked');
+
+      if($imgContainer.hasClass('profilePic')){
+        return;
+      } 
       
       var $imgs = $($imgContainer).find('img.img');
 
