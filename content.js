@@ -53,6 +53,10 @@ $(document).ready(function(){
       }
       $(this).prop('image-content-checked', 'checked');
 
+      if($(this).find('div.image-content')[0] != undefined){
+        return
+      }
+      
       if($imgContainer.hasClass('profilePic')){
         return;
       } 
