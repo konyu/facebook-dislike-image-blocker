@@ -1,18 +1,18 @@
 {
-  "name": "Facebook image context viewer",
-  "version": "0.3",
+  "name": "Facebook dislike image viewer",
+  "version": "0.4",
   "manifest_version": 2,
-  
+
   "description": "Facebook image context viewer",
-  
+
   "permissions" : [
     "tabs", "http://*/*", "https://*/*", "contextMenus", "storage"
   ],
-  
+
   "icons" : {
     "48" : "icon48.png"
   },
-  
+
   "background" : {
     "scripts" : ["background.js"]
   },
