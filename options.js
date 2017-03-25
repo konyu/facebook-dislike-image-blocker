@@ -1,6 +1,6 @@
 
 // localStorageのキー
-var key = "facebook-image-context-viewer";  
+var key = "facebook-image-context-viewer";
 // localStorageの文字列をJSONで取得
 var getObject = function() {
     var str = localStorage.getItem(key);
@@ -14,9 +14,9 @@ var setObject = function(obj) {
 // localStorageに保存したデータの表示
 var showStorage = function() {
     var obj = getObject();
-    debugger;
+    debugger
     if(obj['invisible']){
-      $('#value').prop('checked', 'checked');
+      $('#value').val(obj['invisible']);
     }
 };
 $(function(){
@@ -24,16 +24,15 @@ $(function(){
     $('#put').click(function() {
         var key = $('#key').val();
 
-        var value = false;
-        if($("#value").prop('checked')) {
-          value = true
-        }
+        // if($("#value").val('checked')) {
+        //   value = true
+        // }
 
         var obj = getObject();
         if (!obj) {
             obj = new Object();
         }
-        obj[key] = value;
+        obj[key] = $("#value").val();
         setObject(obj);
         showStorage();
     });
