@@ -5,7 +5,7 @@ You can block foods' images in Facebook with this this extension.
 This extention displays these tags on your facebook feed.
 This extention blocks images which has tags include blocking keywords.
 
-### [Chrome extention link](https://chrome.google.com/webstore/detail/mfmnhkpjafnbiibfmeapiidmncgncpdc/publish-delayed)
+### [Chrome extention link](https://chrome.google.com/webstore/detail/facebook-dislike-image-vi/mfmnhkpjafnbiibfmeapiidmncgncpdc)
 
 
 ## Demo Movie
