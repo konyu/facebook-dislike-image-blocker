@@ -13,15 +13,15 @@ $(document).ready(function(){
     var key = "facebook-image-context-viewer";
     chrome.runtime.sendMessage({method: "getLocalStorage", key: key}, function(response) {
       console.log(response.data);
-      var isVisible = false;
+      var ng_keys = [];
       var obj = {};
       if(response.data != undefined) {
         obj = JSON.parse(response.data);
-        isVisible = obj['invisible'];
+        ng_keys = obj['ng_keys'];
       }
 
       setInterval(function(){
-        detectImage(isVisible);
+        detectImage(ng_keys);
       },1000);
     });
   }
@@ -30,15 +30,16 @@ $(document).ready(function(){
   loadCss();
 
   $(document).on('click', 'div.image-content' ,function(){
-    var $imgs = $(this).closest('div.userContentWrapper').find('div.uiScaledImageContainer img.img');
-    if ($imgs.is(':visible')) {
-      $imgs.hide();
+    var id = $(this).prop('id');
+    var $img = $(this).closest('div.userContentWrapper').find('div.uiScaledImageContainer img.img#' + id)
+    if ($img.is(':visible')) {
+      $img.hide();
     } else {
-      $imgs.show();
+      $img.show();
     }
   });
 
-  function detectImage(isVisible){
+  function detectImage(ng_keys){
     var $userContentWrappers =  $('#stream_pagelet div.userContentWrapper');
 
     if($userContentWrappers.length < 1){
@@ -65,11 +66,18 @@ $(document).ready(function(){
 
       //画像のタグを表示
       $imgs.each(function(j) {
-        if($(this).prop('alt') != null && $(this).prop('alt') != undefined && $(this).prop('alt') != ''){
-          $(elm).find('.userContent').append('<div class="image-content">' + (j + 1) + ": " + $(this).prop('alt') +'</div>');
-          if ( $(this).prop('alt').indexOf(isVisible) != -1) {
-            $(this).hide();
-          }
+        var $this = $(this);
+        if($this.prop('alt') != null && $this.prop('alt') != undefined && $this.prop('alt') != ''){
+          $this.prop('id', j + 1);
+          var description = $this.prop('alt');
+
+          $(elm).find('.userContent').append('<div class="image-content" id=' + (j + 1) +'>' + (j + 1) + ": " + description +'</div>');
+
+          $.each(ng_keys, function(){
+            if ( description.indexOf(this) != -1) {
+              $this.hide();
+            }
+          });
         }
       });
     });
